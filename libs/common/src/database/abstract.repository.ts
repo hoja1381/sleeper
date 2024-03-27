@@ -5,7 +5,7 @@ import { IRepository } from "./repository.interface";
 
 
 export class AbstractRepository<TEntity extends AbstractEntity> implements IRepository<TEntity>{
-    protected readonly logger = Logger
+    protected readonly logger: Logger
 
     constructor(protected readonly model: Model<TEntity>) { }
 
@@ -64,4 +64,8 @@ export class AbstractRepository<TEntity extends AbstractEntity> implements IRepo
         return foundDoc
     }
 
+    async delete(filters: FilterQuery<TEntity>): Promise<TEntity> {
+        const deletedDoc = await this.model.findOneAndDelete(filters)
+        return deletedDoc
+    }
 }
