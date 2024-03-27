@@ -25,8 +25,8 @@ export class AbstractRepository<TEntity extends AbstractEntity> implements IRepo
         const updatedDoc = await this.model.findOneAndUpdate(filters, data, { new: true })
 
         if (!updatedDoc) {
-            this.logger.warn(`document not found with ${filters}`)
-            throw new NotFoundException(`document not found with ${filters}`)
+            this.logger.warn(`document not found with filters : ${JSON.stringify(filters)}`)
+            throw new NotFoundException(`document not found with filters :  ${JSON.stringify(filters)}`)
         }
 
         return updatedDoc
@@ -37,8 +37,8 @@ export class AbstractRepository<TEntity extends AbstractEntity> implements IRepo
         const foundDoc = await this.model.findById(id)
 
         if (!foundDoc) {
-            this.logger.warn(`document not found with ${id}`)
-            throw new NotFoundException(`document not found with ${id}`)
+            this.logger.warn(`document not found with id: ${id}`)
+            throw new NotFoundException(`document not found with id: ${id}`)
         }
 
         return foundDoc
@@ -57,8 +57,8 @@ export class AbstractRepository<TEntity extends AbstractEntity> implements IRepo
         const foundDoc = await this.model.findOne(filters)
 
         if (!foundDoc) {
-            this.logger.warn(`document not found with ${filters}`)
-            throw new NotFoundException(`document not found with ${filters}`)
+            this.logger.warn(`document not found with filters: ${JSON.stringify(filters)}`)
+            throw new NotFoundException(`document not found with filters : ${JSON.stringify(filters)}`)
         }
 
         return foundDoc
