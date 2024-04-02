@@ -1,11 +1,13 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { ReservationService } from './reservation.service';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Inject } from '@nestjs/common';
 import { CreateReservationDto } from './dto/create-reservation.dto';
 import { UpdateReservationDto } from './dto/update-reservation.dto';
+import { Model } from 'mongoose';
+import { Reservation } from './entities/reservation.entity';
+import { IService } from '@app/common';
 
 @Controller('reservations')
 export class ReservationController {
-  constructor(private readonly reservationService: ReservationService) { }
+  constructor(@Inject("SERVICE") private readonly reservationService: IService<Model<Reservation>, CreateReservationDto, UpdateReservationDto>) { }
 
   @Post()
   create(@Body() createReservationDto: CreateReservationDto) {
