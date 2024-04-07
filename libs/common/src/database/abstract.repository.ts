@@ -12,7 +12,7 @@ export class AbstractRepository<TEntity extends AbstractEntity> implements IRepo
 
     async create(data: Omit<TEntity, '_id'>): Promise<TEntity> {
         const createdDoc = new this.model({
-            _id: new Types.ObjectId,
+            // _id: new Types.ObjectId,
             ...data,
         })
 

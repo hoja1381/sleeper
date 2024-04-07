@@ -23,11 +23,14 @@ export class ReservationService {
     return await this.reservationRepo.findById(id)
   }
 
+
   async update(_id: string, updateReservationDto: UpdateReservationDto) {
+    //@ts-ignore
     return this.reservationRepo.update({ _id }, updateReservationDto)
   }
 
   async remove(_id: string) {
+    //@ts-ignore
     return this.reservationRepo.delete({ _id })
   }
 }
