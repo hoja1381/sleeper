@@ -16,8 +16,8 @@ import { User, userSchema } from './entities/user.entity';
     { provide: REPOSITORY, useClass: UserRepository }
   ],
   exports: [
-    { provide: SERVICE, useClass: UsersService },
-    { provide: REPOSITORY, useClass: UserRepository }
+    SERVICE,
+    REPOSITORY,
   ]
 })
 export class UsersModule { }

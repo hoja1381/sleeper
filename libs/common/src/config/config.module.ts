@@ -4,6 +4,7 @@ import * as Joi from 'joi';
 
 @Module({
     imports: [NestConfigModule.forRoot({
+        isGlobal: true,
         validationSchema: Joi.object({
             MONGO_URI: Joi.string().required(),
             JWT_SEC: Joi.string().required(),

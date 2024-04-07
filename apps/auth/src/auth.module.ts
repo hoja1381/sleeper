@@ -8,6 +8,7 @@ import { SERVICE } from '@app/common';
 import { LocalStrategy } from './strategies/local.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { UsersService } from './users/users.service';
+import { JwtStrategy } from './strategies/jwt.strategy';
 
 @Module({
   imports: [UsersModule, ConfigModule, JwtModule.registerAsync({
@@ -22,9 +23,11 @@ import { UsersService } from './users/users.service';
   })],
   controllers: [AuthController],
   providers: [
+    ConfigModule,
     AuthService,
     { provide: SERVICE, useClass: UsersService },
-    LocalStrategy
+    LocalStrategy,
+    JwtStrategy
   ],
 })
 export class AuthModule { }
